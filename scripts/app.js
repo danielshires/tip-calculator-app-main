@@ -9,11 +9,11 @@ const warningMessage = document.querySelectorAll("div.warning-message")
 
 const data = {
     billTotal: 0,
-    tipValue: 0,
+    tipPercent: 0,
     numberOfPeople: 0,
     get tipAmount() {
-        if (this.billTotal > 0 && this.tipValue > 0) {
-            return this.billTotal * this.tipValue
+        if (this.billTotal > 0 && this.tipPercent > 0) {
+            return this.billTotal * this.tipPercent
         } else {
             return 0
         }
@@ -79,15 +79,13 @@ const numPeopleValue = () => {
 
 }
 
-// Calculates the tip amounts and sets it to the tipValue obj
+// Calculates the tip amounts and sets it to the tipPercent obj
 const calculateTip = (event) => {
     selectTipInput.forEach(btn => {
         // Checks if the event target = the value inside the btn tag
         if (event.target.innerHTML == btn.innerHTML) {
-            // If true it logs that value to tipPercent
-            tipPercent = parseFloat(btn.innerHTML) / 100;
             // And sets in the object
-            data.tipValue = tipPercent
+            data.tipPercent = parseFloat(btn.innerHTML) / 100;
             btn.classList.add("active")
             // Resets custom value
             customTipInput.value = "Custom"
@@ -99,7 +97,7 @@ const calculateTip = (event) => {
     })
 }
 
-// Calculates the custom tip and sets it to the tipValue obj
+// Calculates the custom tip and sets it to the tipPercent obj
 const calculateCustomTip = () => {
 
     if (customTipInput.value > 0) {
@@ -107,7 +105,7 @@ const calculateCustomTip = () => {
             btn.classList.remove("active")
         })
         customTipInput.classList.add("active")
-        data.tipValue = parseFloat(customTipInput.value / 100)
+        data.tipPercent = parseFloat(customTipInput.value / 100)
         setTipTotal()
     } else {
         customTipInput.value = "Custom"

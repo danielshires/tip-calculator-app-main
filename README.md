@@ -11,8 +11,6 @@ This is a solution to the [Tip calculator app challenge on Frontend Mentor](http
 - [My process](#my-process)
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
-  - [Continued development](#continued-development)
-  - [Useful resources](#useful-resources)
 - [Author](#author)
 - [Acknowledgments](#acknowledgments)
 
@@ -30,20 +28,11 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot.jpg)
-
-Add a screenshot of your solution. The easiest way to do this is to use Firefox to view your project, right-click the page and select "Take a Screenshot". You can choose either a full-height screenshot or a cropped one based on how long the page is. If it's very long, it might be best to crop it.
-
-Alternatively, you can use a tool like [FireShot](https://getfireshot.com/) to take the screenshot. FireShot has a free option, so you don't need to purchase it. 
-
-Then crop/optimize/edit your image however you like, add it to your project, and update the file path in the image above.
-
-**Note: Delete this note and the paragraphs above when you add your screenshot. If you prefer not to add a screenshot, feel free to remove this entire section.**
+![](./images/tip-calculator-desktop-screen.png)
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Live Site URL: [tip-calculator-app-fm.netlify.app](https://tip-calculator-app-fm.netlify.app/)
 
 ## My process
 
@@ -53,57 +42,67 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 - CSS custom properties
 - Flexbox
 - CSS Grid
+– Responsive CSS
 - Mobile-first workflow
-
-**Note: These are just examples. Delete this note and replace the list above with your own choices**
+– Vanilla Javascript
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+This was a tricky task, as I decied to store all of the data in an object, instead of doing the main functionality inside functions. I've seen other solutions with less lines of code, but I wanted to explore how to work with objects, and using object methods to caculature other propeties set inside an object.
 
-To see how you can add code snippets, see below:
-
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
-```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
+For example, inside the 'data' object, I stored three values for the bill total, tip value and number of people.
 ```js
-const proudOfThisFunc = () => {
-  console.log('🎉')
+const data = {
+    billTotal: 0,
+    tipValue: 0,
+    numberOfPeople: 0,
 }
 ```
 
-If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
+I then used a number of methods. For example, the tip amount method first checks if values are greater than 0, and then if true, they take the bill total (e.g. $100) and multiplies it by the tip percentage (e.g. 20%). This produces the final tip amount for the bill – $20.
 
-**Note: Delete this note and the content within this section and replace with your own learnings.**
+```js
+   get tipAmount() {
+        if (this.billTotal > 0 && this.tipPercent > 0) {
+            return this.billTotal * this.tipPercent
+        } else {
+            return 0
+        }
+    }
+```
 
-### Continued development
+This value is returned in another method inside the 'Data' object. This value returnds the tip per person, by taking the value from tipAmount, and dividing it by the total number of people in the group.
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
+```js
+ get tipPerPerson() {
+        if (this.tipAmount > 0 && this.numberOfPeople > 0) {
+            return this.tipAmount / this.numberOfPeople
+        } else {
+            return 0
+        }
+    },
+```
 
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
+In order to inject that data onto the page, I used multiple functions, all of which are triggeted by Event Listenrs on the input and button tags.
 
-### Useful resources
+The following snipper shows the setTipTotal function, which runs after every time a user enters a value. It removes the disabled attribute on the reset button, and sets the 'Tip Amount' and 'Total' fields to data set inside an object. To Fixed reduces a longer number down to 2 decimal places.
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
-
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
+```js
+const setTipTotal = () => {
+    buttonResetTag.removeAttribute("disabled");
+    tipAmountResult.innerHTML = `$${data.tipPerPerson.toFixed(2)}`
+    totalResult.innerHTML = `$${data.totalPerPerson.toFixed(2)}`
+}
+}
+```
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
+- Website - [Daniel Shires Portfolio](https://www.danielshires.com)
+- Frontend Mentor - [@danielshires](https://www.frontendmentor.io/profile/danielshires)
+- Twitter - [@danshiresdesign](https://twitter.com/danshiresdesign)
 
-**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
 
 ## Acknowledgments
 
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
-
-**Note: Delete this note and edit this section's content as necessary. If you completed this challenge by yourself, feel free to delete this section entirely.**
+Shoutout to [kilelx](https://github.com/kilelx/Tip-Calculator) whose solution I used as inspiration for some of the smaller tasks – e.g. using data attributes to set the status of the reset button.
