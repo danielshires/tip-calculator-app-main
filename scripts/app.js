@@ -126,7 +126,7 @@ const reset = () => {
     // Set input values to 0
     billInput.value = 0
     numberOfPeopleInput.value = 0
-    customTipInput.innerHTML = "Custom"
+    customTipInput.value = "Custom"
     tipAmountResult.innerHTML = `$${data.tipPerPerson.toFixed(2)}`
     totalResult.innerHTML = `$${data.totalPerPerson.toFixed(2)}`
 }
