@@ -103,6 +103,7 @@ body {
     gap: 2.5rem;
 }
 
+
 .logo {
     position: relative;
     background-image: url(./images/logo.svg);
@@ -111,8 +112,12 @@ body {
     height: 100px;
     width: 100%;
     margin: auto;
+}
+
+h1 {
     font-size: 0;
 }
+
 
 /* Typography */
 
