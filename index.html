@@ -1,44 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="./reset.css">
+  <link rel="stylesheet" type="text/css" href="./styles.css">
+
+
   <title>Frontend Mentor | Tip calculator app</title>
 
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
+
 </head>
+
 <body>
+  <div class="logo"></div>
+  <div class="container">
+    <div class="left-container">
+      <div classs="container-box select-bill">
+        <div class="flex space-between">
+          <label class="section-title" for="bill">Bill</label>
+          <div class="warning-message">Can't be 0</div>
+        </div>
+        <input class="bill" id="bill" type="number" value="0"
+          oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+          maxlength="5">
+      </div>
 
-  Bill
+      <div class="container-box select-tip">
+        <label class="section-title">Select Tip %</label>
+        <div class="tip-values">
+          <button class="percent tip">5%</button>
+          <button class="percent tip">10%</button>
+          <button class="percent tip">15%</button>
+          <button class="percent tip">25%</button>
+          <button class="percent tip">50%</button>
+          <div>
+            <input id="custom" type="text" value="Custom" name="tip" class="custom" maxlength="3">
+          </div>
+        </div>
+      </div>
 
-  Select Tip %
-  5%
-  10%
-  15%
-  25%
-  50%
-  Custom
+      <div classs="container-box select-number-of-people">
+        <div class="flex space-between">
+          <label class="section-title" for="number-of-people">Number of People</label>
+          <div class="warning-message">Can't be 0</div>
+        </div>
+        <input class="people" id="number-of-people" type="number" value="0"
+          oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+          maxlength="3">
+      </div>
+    </div>
 
-  Number of People
+    <div class="right-container space-between">
+      <div class="right-container_top">
+        <div class="container-box flex space-between">
+          <div class="total">
+            <div class="section-title">Tip Amount</div>
+            <div class="section-sub">/ person</div>
+          </div>
+          <div class="number-large tip-person">$0.00</div>
+        </div>
 
-  Tip Amount
-  / person
+        <div class="container-box flex space-between">
+          <div class="total">
+            <div class="section-title">Total</div>
+            <div class="section-sub">/ person</div>
+          </div>
+          <div class="number-large total-person">$0.00</div>
+        </div>
+      </div>
 
-  Total
-  / person
-
-  Reset
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
+      <button class="reset" type="reset" value="Reset" disabled="true">Reset</button>
+    </div>
+    <!-- <div class="attribution">
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+      Coded by <a href="#">Your Name Here</a>.
+    </div> -->
   </div>
+
+  <script src="./scripts/app.js"></script>
 </body>
+
 </html>
