@@ -48,7 +48,7 @@ Users should be able to:
 
 ### What I learned
 
-This was a tricky task, as I decied to store all of the data in an object, instead of doing the main functionality inside functions. I've seen other solutions with less lines of code, but I wanted to explore how to work with objects, and using object methods to caculature other propeties set inside an object.
+This was a tricky task, as I decied to store all of the data in an object, instead of doing the calculations inside functions. I've seen other solutions with less lines of code, but I wanted to explore how to work with objects, and using object methods to caculatue propeties set inside an object.
 
 For example, inside the 'data' object, I stored three values for the bill total, tip value and number of people.
 ```js
@@ -80,7 +80,7 @@ This value is returned in another method inside the 'Data' object. This value re
         } else {
             return 0
         }
-    },
+    }
 ```
 
 In order to inject that data onto the page, I used multiple functions, all of which are triggeted by Event Listenrs on the input and button tags.
@@ -93,7 +93,7 @@ const setTipTotal = () => {
     tipAmountResult.innerHTML = `$${data.tipPerPerson.toFixed(2)}`
     totalResult.innerHTML = `$${data.totalPerPerson.toFixed(2)}`
 }
-}
+
 ```
 
 ## Author
